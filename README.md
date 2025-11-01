@@ -132,3 +132,4 @@ Asegurate de usar `render()` al final para mostrar el resultado final
 ## Recursos
 
 - [Editor online de Hydra](https://hydra.ojack.xyz)
+- [Embed Hydra on your webpage](https://hydra.ojack.xyz/docs/docs/learning/guides/how-to/hydra-in-a-webpage/#embed-hydra-on-your-webpage)

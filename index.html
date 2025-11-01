@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hydra Incrustado</title>
+    <script src="https://cdn.jsdelivr.net/npm/hydra-synth/dist/hydra-synth.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        #hydra-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -10000;
+        }
+        
+        .content {
+            color: white;
+            text-align: center;
+            padding: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+    </style>
+    
+</head>
+<body>
+    <script>
+        // create a new hydra-synth instance
+        var hydra = new Hydra({ detectAudio: false })
+        
+        // Obtener el canvas y configurarlo como background
+        setTimeout(() => {
+            const canvas = document.querySelector('canvas');
+            if (canvas) {
+                canvas.id = 'hydra-canvas';
+            }
+        }, 100);
+        
+        // licensed with CC BY-NC-SA 4.0 https://creativecommons.org/licenses/by-nc-sa/4.0/
+        // Mahalia H-R
+        // IG: @mm_hr_
+        
+        // inicio de la animación en hydra
+        shape(20,0.1,0.01)
+        .scale(() => Math.sin(time)*3)
+        .repeat(() => Math.sin(time)*10)
+        .modulateRotate(o0)
+        .scale(() => Math.sin(time)*2)
+        .modulate(noise(2,0))
+        .rotate(0.1, 0.9)
+        .out(o0)
+
+        src(o0)
+        .modulate(osc(500,0,0))
+        .out(o1)
+
+        src(o1)
+        .modulateKaleid(voronoi(() => Math.sin(time)*3,0.1,0.01),() => Math.sin(time)*3)
+        .scale(() => Math.sin(time)*3)
+        .out(o2)
+
+        render(o2)
+        // fin de la animación en hydra
+    </script>
+    <div class="content">
+        <h1>Hydra Incrustado</h1>
+        <p>El canvas de Hydra ahora es el background del body</p>
+    </div>
+</body>
+</html>
